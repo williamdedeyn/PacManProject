@@ -37,6 +37,10 @@ public class Ghost {
 	 *
 	 */
 	public Ghost(Square square, Direction direction) {
+		if(square.isPassable())
+			throw new IllegalArgumentException("Square is not free in the maze");
+		if(square.canMove(direction))
+			throw new IllegalArgumentException("The square in the given direction is not free");
 		this.square = square;
 		this.direction = direction;
 	}
@@ -51,6 +55,8 @@ public class Ghost {
 	 * @post | getDirection() == old(getDirection())
 	 */
 	public void setSquare(Square square) {
+		if(square.isPassable())
+			throw new IllegalArgumentException("Square is not free in the maze");
 		this.square = square;
 	}
 	
@@ -64,6 +70,8 @@ public class Ghost {
 	 * @post | getSquare() == old(getSquare())
 	 */
 	public void setDirection(Direction direction) {
+		if(square.canMove(direction))
+			throw new IllegalArgumentException("The square in the given direction is not free");
 		this.direction = direction;
 	}
 	

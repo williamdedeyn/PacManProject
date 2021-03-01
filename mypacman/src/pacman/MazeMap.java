@@ -44,13 +44,19 @@ public class MazeMap {
 	 * Returns whether the square in this maze at row index {@code row} and column index {@code column} is passable.
 	 * The square in the top-left corner of the maze has row index 0 and column index 0.
 	 * 
+	 * @throws IllegalArgumentException | rowIndex >= getWidth()
+	 * @throws IllegalArgumentException | columnIndex >= getHeight()
 	 * @throws IllegalArgumentException | rowIndex < 0
 	 * @throws IllegalArgumentException | columnIndex < 0
 	 * 
 	 */
 	public boolean isPassable(int rowIndex, int columnIndex) {
+		if( rowIndex >= getWidth())
+			throw new IllegalArgumentException("row outside the maze");
 		if( rowIndex < 0)
 			throw new IllegalArgumentException("rowindex can't be smaller than 0");
+		if( columnIndex >= getHeight())
+			throw new IllegalArgumentException("column outside the maze");
 		if(columnIndex < 0)
 			throw new IllegalArgumentException("columnnindex can't be smaller than 0");
 		return elements[rowIndex*width+columnIndex];
