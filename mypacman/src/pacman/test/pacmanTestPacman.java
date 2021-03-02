@@ -35,6 +35,9 @@ class pacmanTestPacman {
 		  pacmanInvalidColumn2 = new PacMan(3,Square.of(mazemap, 0, -2));});
 		  Assertions.assertThrows(IllegalArgumentException.class, () -> { PacMan
 		  pacmanInvalidPosition = new PacMan(1,Square.of(mazemap, 1, 0));});
+		  Assertions.assertThrows(IllegalArgumentException.class, () -> { PacMan
+		  pacmanInvalidSquare = new PacMan(1,null);});
+		  
 		  
 		  
 		  Square square = Square.of(mazemap, 0, 0);
@@ -55,6 +58,9 @@ class pacmanTestPacman {
 		  Assertions.assertThrows(IllegalArgumentException.class, () -> { 
 			  pacmanValid.setSquare(Square.of(mazemap, 0, -1));
 		  });
+		  Assertions.assertThrows(IllegalArgumentException.class, () -> { 
+			  pacmanValid.setSquare(null);
+		  });
 		  square = Square.of(mazemap, 0, 1);		  
 		  pacmanValid.setSquare(square);
 		  assertTrue(square == pacmanValid.getSquare());
@@ -71,8 +77,6 @@ class pacmanTestPacman {
 		  pacmandie.die();
 		  assertEquals(0,pacmandie.getNbLives());
 		  assertTrue(square == pacmandie.getSquare());
-		  
-		  
 		  
 		  
 		
