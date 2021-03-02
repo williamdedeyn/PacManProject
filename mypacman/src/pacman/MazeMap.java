@@ -28,15 +28,13 @@ public class MazeMap {
 
 	/**
 	 * Returns the width (i.e. the number of columns) of this maze map.
-	 * 
-	 * @post | result  == (getElements().length)/getHeight()
+	 * @basic
 	 */
 	public int getWidth() { return width; }
 	
 	/**
 	 * Returns the height (i.e. the number of rows) of this maze map.
-	 * 
-	 * @post | result == (getElements().length)/getWidth()
+	 * @basic
 	 */
 	public int getHeight() { return height; }
 	

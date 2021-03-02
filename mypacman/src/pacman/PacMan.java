@@ -17,9 +17,9 @@ public class PacMan {
 	 * Returns the current position of Pac-Man.
 	 * 
 	 * @post | 0 <= result.getRowIndex() && 
-	 * 		 | result.getRowIndex() <= result.getMazeMap().getHeight()
-	 * @post | 0<= result.getColumnIndex() && 
-	 * 		 | result.getColumnIndex() <= result.getMazeMap().getWidth()
+	 * 		 | result.getRowIndex() < result.getMazeMap().getHeight()
+	 * @post | 0 <= result.getColumnIndex() && 
+	 * 		 | result.getColumnIndex() < result.getMazeMap().getWidth()
 	 */
 	public Square getSquare() {return square;}
 	
@@ -35,10 +35,11 @@ public class PacMan {
 	 * in the maze given by an object of the class Square.
 	 * 
 	 * @throws IllegalArgumentException | nbLives <= 0
-	 * @throws IllegalArgumentException | 0 <= square.getRowIndex() && 
-	 * 									|square.getRowIndex() <= square.getMazeMap().getHeight()
-	 * @throws IllegalArgumentException | 0<= square.getColumnIndex() && 
-	 * 									| square.getColumnIndex() <= square.getMazeMap().getWidth() 
+	 * @throws IllegalArgumentException | 0 > square.getRowIndex() || 
+	 * 									|square.getRowIndex() >= square.getMazeMap().getHeight()
+	 * @throws IllegalArgumentException | 0 > square.getColumnIndex() || 
+	 * 									| square.getColumnIndex() >= square.getMazeMap().getWidth() 
+	 * @throws IllegalArgumentException | square.isPassable() ==  false
 	 * 
 	 * @inspects | square
 	 * 
@@ -49,10 +50,12 @@ public class PacMan {
 	public PacMan(int nbLives, Square square) {
 		if(nbLives <= 0)
 			throw new IllegalArgumentException("No lives left");
-		if(0 <= square.getRowIndex() && square.getRowIndex() <= square.getMazeMap().getHeight())
+		if(0 > square.getRowIndex() || square.getRowIndex() >= square.getMazeMap().getHeight())
 			throw new IllegalArgumentException("Not a valid position");
-		if(0<= square.getColumnIndex() && square.getColumnIndex() <= square.getMazeMap().getWidth())
+		if(0 > square.getColumnIndex() || square.getColumnIndex() >= square.getMazeMap().getWidth())
 			throw new IllegalArgumentException("Not a valid position");
+		if (square.isPassable() == false)
+			throw new IllegalArgumentException("Not a passable position");
 		pacmanLives = nbLives;
 		this.square = square;
 	}
@@ -60,10 +63,10 @@ public class PacMan {
 	/**
 	 * Changes the position of Pac-Man in the maze.
 	 * 
-	 * @throws IllegalArgumentException | 0 <= square.getRowIndex() && 
-	 * 									|square.getRowIndex() <= square.getMazeMap().getHeight()
-	 * @throws IllegalArgumentException | 0<= square.getColumnIndex() && 
-	 * 									| square.getColumnIndex() <= square.getMazeMap().getWidth()
+	 * @throws IllegalArgumentException | 0 > square.getRowIndex() || 
+	 * 									|square.getRowIndex() >= square.getMazeMap().getHeight()
+	 * @throws IllegalArgumentException | 0 > square.getColumnIndex() || 
+	 * 									| square.getColumnIndex() >= square.getMazeMap().getWidth()
 	 * @inspects | square
 	 * @mutates | this
 	 * 
@@ -71,7 +74,12 @@ public class PacMan {
 	 * @post | getNbLives() == old(getNbLives())
 	 * 
 	 */
-	public void setSquare(Square square) { this.square = square; }
+	public void setSquare(Square square) { 
+		if(0 > square.getRowIndex() || square.getRowIndex() >= square.getMazeMap().getHeight())
+			throw new IllegalArgumentException("Not a valid position");
+		if(0 > square.getColumnIndex() || square.getColumnIndex() >= square.getMazeMap().getWidth())
+			throw new IllegalArgumentException("Not a valid position");
+		this.square = square; }
 	
 	/**
 	 * Decreases this Pac-Man character's number of lives by one.

@@ -26,8 +26,8 @@ public class Ghost {
 	public Direction getDirection() { return direction; }
 	
 	/**
-	 * @throws IllegalArgumentException | square.isPassable()
-	 * @throws IllegalArgumentException | square.canMove(direction)
+	 * @throws IllegalArgumentException | square.isPassable() == false
+	 * @throws IllegalArgumentException | square.canMove(direction) == false
 	 * 
 	 * @inspects | square
 	 * @inspects | direction
@@ -37,16 +37,16 @@ public class Ghost {
 	 *
 	 */
 	public Ghost(Square square, Direction direction) {
-		if(square.isPassable())
+		if(square.isPassable() == false)
 			throw new IllegalArgumentException("Square is not free in the maze");
-		if(square.canMove(direction))
+		if(square.canMove(direction) == false)
 			throw new IllegalArgumentException("The square in the given direction is not free");
 		this.square = square;
 		this.direction = direction;
 	}
 	
 	/**
-	 * @throws IllegalArgumentException | square.isPassable()
+	 * @throws IllegalArgumentException | square.isPassable() == false
 	 * 
 	 * @mutates | this
 	 * @inspects | square 
@@ -55,13 +55,13 @@ public class Ghost {
 	 * @post | getDirection() == old(getDirection())
 	 */
 	public void setSquare(Square square) {
-		if(square.isPassable())
+		if(square.isPassable() == false)
 			throw new IllegalArgumentException("Square is not free in the maze");
 		this.square = square;
 	}
 	
 	/**
-	 * @throws IllegalArgumentException | getSquare().canMove(direction)
+	 * @throws IllegalArgumentException | getSquare().canMove(direction) == false
 	 * 
 	 * @mutates | this
 	 * @inspects | direction 
@@ -70,7 +70,7 @@ public class Ghost {
 	 * @post | getSquare() == old(getSquare())
 	 */
 	public void setDirection(Direction direction) {
-		if(square.canMove(direction))
+		if(square.canMove(direction) == false)
 			throw new IllegalArgumentException("The square in the given direction is not free");
 		this.direction = direction;
 	}
