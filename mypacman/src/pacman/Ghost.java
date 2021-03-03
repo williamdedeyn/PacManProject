@@ -8,8 +8,8 @@ import java.util.Random;
 public class Ghost {
 	
 	/**
-	 * @invar | square.isPassable()
-	 * @invar | square.canMove(direction)
+	 * @invar | square.isPassable() == true
+	 * @invar | square.canMove(direction) == true
 	 * @invar | square != null
 	 * @invar | direction != null
 	 * @invar | 0 <= square.getRowIndex() && 
@@ -101,7 +101,7 @@ public class Ghost {
 			throw new IllegalArgumentException("Square is not free in the maze");
 		this.square = square;
 	}
-	
+
 	/**
 	 * @throws IllegalArgumentException | getSquare().canMove(direction) == false
 	 * @throws IllegalArgumentException | direction == null
