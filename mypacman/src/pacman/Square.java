@@ -12,8 +12,8 @@ import java.util.Arrays;
 public class Square {
 	
 	/**
-//	 * @invar | 0 <= row && row < map.getHeight()
-//	 * @invar | 0 <= column && column < map.getWidth()
+	 * @invar | 0 <= row && row < map.getHeight()
+	 * @invar | 0 <= column && column < map.getWidth()
 	 */
 	private int row;
 	private int column;
@@ -36,6 +36,12 @@ public class Square {
 	public boolean isPassable() { return map.isPassable(row, column); }
 	
 	public static Square of(MazeMap mazeMap, int rowIndex, int columnIndex) {
+		if(rowIndex < 0 || rowIndex >= mazeMap.getHeight())
+			throw new IllegalArgumentException("rowindex is not valid");
+		if(columnIndex < 0 || columnIndex >= mazeMap.getWidth())
+			throw new IllegalArgumentException("columnindex is not valid");
+		if(mazeMap == null)
+			throw new IllegalArgumentException("mazemap is null");
 		 Square square = new Square(mazeMap,rowIndex,columnIndex);
 		 return square;
 	}

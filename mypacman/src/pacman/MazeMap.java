@@ -1,6 +1,7 @@
 package pacman;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * Each instance of this class represents a maze layout, specifying the width and height of the maze
@@ -21,20 +22,19 @@ public class MazeMap {
 	/** @representationObject */
 	private boolean[] elements;
 	
-	
-	public boolean[] getElements() {
-		return elements.clone();
-	}
-
 	/**
 	 * Returns the width (i.e. the number of columns) of this maze map.
 	 * @basic
+	 * 
+	 * @post | result >= 1
 	 */
 	public int getWidth() { return width; }
 	
 	/**
 	 * Returns the height (i.e. the number of rows) of this maze map.
 	 * @basic
+	 * 
+	 * @post | result >= 1
 	 */
 	public int getHeight() { return height; }
 	
@@ -68,13 +68,14 @@ public class MazeMap {
 	 * @throws IllegalArgumentException | width < 1
 	 * @throws IllegalArgumentException | height < 1
 	 * @throws IllegalArgumentException | passable == null
-	 * @throws IllegalArgumentException | passable.length != width*width
+	 * @throws IllegalArgumentException | passable.length != width*height
 	 * 
 	 * @inspects | passable
 	 * 
 	 * @post | getWidth() == width
 	 * @post | getHeight() == height
-	 * @post | Arrays.equals(getElements(),passable)
+	 * @post | IntStream.range(0, getHeight()).allMatch(rowIndex -> IntStream.range(0, getWidth()).allMatch(columnIndex -> 
+	 *       | isPassable(rowIndex,columnIndex) == passable[ rowIndex*width + columnIndex ]))
 	 * 
 	 */
 	public MazeMap(int width, int height, boolean[] passable) {
