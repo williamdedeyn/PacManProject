@@ -7,30 +7,16 @@ import java.util.Random;
  */
 public class Ghost {
 	
-	/**
-	 * @invar | square.isPassable() == true
-	 * @invar | square.canMove(direction) == true
-	 * @invar | square != null
-	 * @invar | 0 <= square.getRowIndex() && 
-	 * 		  | square.getRowIndex() < square.getMazeMap().getHeight()
-	 * @invar | 0 <= square.getColumnIndex() && 
-	 * 		  | square.getColumnIndex() < square.getMazeMap().getWidth()
-	 */
 	/** @RepresentationObjects */
+	
 	private Direction direction;
 	private Square square;
 	
 	/**
 	 * Returns the current square of the ghost in the maze
 	 * @basic
-	 * 
-	 * @post | 0 <= result.getRowIndex() && 
-	 * 		 | result.getRowIndex() < result.getMazeMap().getHeight()
-	 * @post | 0 <= result.getColumnIndex() && 
-	 * 		 | result.getColumnIndex() < result.getMazeMap().getWidth()
-	 * @post | result.isPassable() == true
-	 * @post | result != null
 	 */
+	
 	public Square getSquare() {return square;}
 	
 	/**
@@ -41,8 +27,6 @@ public class Ghost {
 	public Direction getDirection() { return direction; }
 	
 	/**
-	 * @inspects | square
-	 * @inspects | direction
 	 * 
 	 * @post | getSquare() == square
 	 * @post | getDirection() == direction
@@ -55,7 +39,6 @@ public class Ghost {
 	
 	/**
 	 * @mutates | this
-	 * @inspects | square 
 	 * 
 	 * @post | getSquare() == square
 	 * @post | getDirection() == old(getDirection())
@@ -67,7 +50,6 @@ public class Ghost {
 	/**
 	 * 
 	 * @mutates | this
-	 * @inspects | direction 
 	 * 
 	 * @post | getDirection() == direction
 	 * @post | getSquare() == old(getSquare())

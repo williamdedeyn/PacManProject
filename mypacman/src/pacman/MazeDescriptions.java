@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class MazeDescriptions {
-	
+
 	private MazeDescriptions() { throw new AssertionError("This class is not intended to be instantiated"); }
 	
 	public static Maze createMazeFromDescription(Random random, String description) {

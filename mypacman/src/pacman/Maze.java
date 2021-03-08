@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Maze {
-	
+
 	private Random random;
 	private MazeMap map;
 	private PacMan pacMan;

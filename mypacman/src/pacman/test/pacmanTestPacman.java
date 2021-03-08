@@ -13,72 +13,40 @@ import pacman.MazeMap;
 
 class pacmanTestPacman {
 
-	@Test
+@Test
+	
 	void test() {
-		//pacmanTest
+		MazeMap mazemap = new MazeMap(2,2,new boolean[] {true,true,false,true});
+		Square square = Square.of(mazemap, 0, 1);
 		
-		//MazeMap construction
-		MazeMap mazemap = new MazeMap(2,2,new boolean [] {true,true,false,true});
-		//constructor tests
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {new PacMan(-1,square);});
 		
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { PacMan
-		  pacmanInvalidRow = new PacMan(3,Square.of(mazemap, 2, 0));});
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { PacMan
-		  pacmanInvalidColumn = new PacMan(3,Square.of(mazemap, 1, 3));});
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { PacMan
-		  pacmanInvalidLives = new PacMan(-1,Square.of(mazemap, 1, 1));});
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { PacMan
-		  pacmanInvalidLives2 =new PacMan(-2,Square.of(mazemap, 0, 0));});
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { PacMan
-		  pacmanInvalidRow2 = new PacMan(3,Square.of(mazemap, -1, 0));});
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { PacMan
-		  pacmanInvalidColumn2 = new PacMan(3,Square.of(mazemap, 0, -2));});
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { PacMan
-		  pacmanInvalidPosition = new PacMan(1,Square.of(mazemap, 1, 0));});
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { PacMan
-		  pacmanInvalidSquare = new PacMan(1,null);});
-		  
-		  
-		  
-		  Square square = Square.of(mazemap, 0, 0);
-		  PacMan pacmanValid = new PacMan(1,square);
-		  
-		  //Test getNbLives()
-		  assertEquals(1,pacmanValid.getNbLives());
-		  //Test getSquare()
-		  assertTrue(square == pacmanValid.getSquare());
-		  
-		  //Test setSquare
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { 
-			  pacmanValid.setSquare(Square.of(mazemap, 1, 0));
-		  });
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { 
-			  pacmanValid.setSquare(Square.of(mazemap, -5, 0));
-		  });
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { 
-			  pacmanValid.setSquare(Square.of(mazemap, 0, -1));
-		  });
-		  Assertions.assertThrows(IllegalArgumentException.class, () -> { 
-			  pacmanValid.setSquare(null);
-		  });
-		  square = Square.of(mazemap, 0, 1);		  
-		  pacmanValid.setSquare(square);
-		  assertTrue(square == pacmanValid.getSquare());
-		  assertEquals(1,pacmanValid.getNbLives());
-		  
-		  // Test die
-		  square = Square.of(mazemap, 1, 1);
-		  PacMan pacmandie = new PacMan(2,square);
-		  assertEquals(2,pacmandie.getNbLives());
-		  assertTrue(square == pacmandie.getSquare());
-		  pacmandie.die();
-		  assertEquals(1,pacmandie.getNbLives());
-		  assertTrue(square == pacmandie.getSquare());
-		  pacmandie.die();
-		  assertEquals(0,pacmandie.getNbLives());
-		  assertTrue(square == pacmandie.getSquare());
-		  
-		  
+		PacMan pacman = new PacMan(3,square);
+		
+		assertEquals(square,pacman.getSquare());
+		assertEquals(3,pacman.getNbLives());
+		
+		Square square2 = Square.of(mazemap, 1, 1);
+		pacman.setSquare(square2);
+		
+		assertEquals(square2,pacman.getSquare());
+		assertEquals(3,pacman.getNbLives());
+		
+		pacman.die();
+		
+		assertEquals(square2,pacman.getSquare());
+		assertEquals(2,pacman.getNbLives());
+		
+		pacman.die();
+		
+		assertEquals(square2,pacman.getSquare());
+		assertEquals(1,pacman.getNbLives());
+		
+		pacman.die();
+		
+		assertEquals(square2,pacman.getSquare());
+		assertEquals(0,pacman.getNbLives());
+		
 		
 	}
 

@@ -23,7 +23,7 @@ import pacman.MazeDescriptions;
 import pacman.MazeMap;
 
 public class MazeView extends JPanel {
-	
+
 	private static int squareSize = 30;
 	private static int lifeSize = squareSize;
 	private static int lifeMargin = 1;

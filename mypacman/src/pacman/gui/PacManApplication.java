@@ -6,7 +6,7 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 public class PacManApplication {
-
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			MazeView mazeView = new MazeView();
