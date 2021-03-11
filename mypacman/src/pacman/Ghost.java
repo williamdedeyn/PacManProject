@@ -5,32 +5,29 @@ import java.util.Random;
 /**
  * Each instance of this class represents a ghost in a Pac-Man maze.
  */
+
 public class Ghost {
 	
-	/** @RepresentationObjects */
-	
+	/** @representationObject */
 	private Direction direction;
+	/** @representationObject */
 	private Square square;
 	
 	/**
 	 * Returns the current square of the ghost in the maze
 	 * @basic
 	 */
-	
 	public Square getSquare() {return square;}
 	
 	/**
 	 * Returns the direction in which this ghost will preferably move next.
 	 * @basic
-	 * 
 	 */
 	public Direction getDirection() { return direction; }
 	
 	/**
-	 * 
 	 * @post | getSquare() == square
 	 * @post | getDirection() == direction
-	 *
 	 */
 	public Ghost(Square square, Direction direction) {
 		this.square = square;
@@ -48,7 +45,6 @@ public class Ghost {
 	}
 
 	/**
-	 * 
 	 * @mutates | this
 	 * 
 	 * @post | getDirection() == direction

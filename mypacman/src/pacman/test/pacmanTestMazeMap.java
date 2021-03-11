@@ -5,9 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import pacman.Direction;
 import pacman.MazeMap;
-import pacman.Square;
+
 
 class pacmanTestMazeMap {
 

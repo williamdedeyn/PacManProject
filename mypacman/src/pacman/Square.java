@@ -1,7 +1,6 @@
 package pacman;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -9,8 +8,6 @@ import java.util.List;
  * Each instance of this class represents a position in a maze, specified by a row index and a column index.
  * The top row and the leftmost column have index 0.
  * 
- * @invar | 0 <= getRowIndex() && getRowIndex() < getMazeMap().getHeight()
- * @invar | 0 <= getColumnIndex() && getColumnIndex() < getMazeMap().getHeight()
  * @immutable
  */
 
@@ -20,13 +17,10 @@ public class Square {
 	 * @invar | 0 <= rowIndex && rowIndex < mazeMap.getHeight()
 	 * @invar | 0 <= columnIndex && columnIndex < mazeMap.getWidth()
 	 */
-	
 	private int rowIndex;
-	
 	private int columnIndex;
 	
 	/** @representationObject */
-	
 	private MazeMap mazeMap;
 	
 	private Square(MazeMap mazeMap, int rowIndex, int columnIndex) {
@@ -39,7 +33,6 @@ public class Square {
 	/**
 	 * @basic
 	 */
-	
 	public MazeMap getMazeMap() { 
 		return mazeMap;
 	}
@@ -47,6 +40,7 @@ public class Square {
 	/**
 	 * @basic
 	 * 
+	 * @post | 0 <= result && result < getMazeMap().getHeight()
 	 */
 	public int getRowIndex() { 
 		return rowIndex;
@@ -55,6 +49,7 @@ public class Square {
 	/**
 	 * @basic
 	 * 
+	 * @post | 0 <= result && result < getMazeMap().getWidth()
 	 */
 	public int getColumnIndex() { 
 		return columnIndex;
@@ -65,13 +60,11 @@ public class Square {
 	 * 
 	 * @post | result == getMazeMap().isPassable(getRowIndex(),getColumnIndex())
 	 */
-	
 	public boolean isPassable() { 
 		return mazeMap.isPassable(rowIndex,columnIndex);
 	}
 	
 	/**
-	 * 
 	 * @throws IllegalArgumentException | rowIndex < 0
 	 * @throws IllegalArgumentException | columnIndex <0
 	 * @throws IllegalArgumentException | rowIndex >= mazeMap.getHeight()

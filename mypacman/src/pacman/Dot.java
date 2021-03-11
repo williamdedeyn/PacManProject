@@ -5,26 +5,20 @@ package pacman;
  * 
  * @immutable
  */
+
 public class Dot {
 
-	
-	/** 
-	 * @RepresentationObject 
-	 * */
-	
+	/** @representationObject */
 	private Square square;
 
 	/**
 	 * @basic
 	 */
-	
 	public Square getSquare() {return square;}
 	
 	/**
-	 * 
 	 * @post | getSquare() == square
 	 */
-	
 	public Dot(Square square) {
 		this.square = square;}
 

@@ -2,11 +2,8 @@ package pacman.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Assertions;
 
-import pacman.Direction;
 import pacman.Dot;
-import pacman.Ghost;
 import pacman.MazeMap;
 import pacman.Square;
 

@@ -26,7 +26,7 @@ class pacmanTestPacman {
 		assertEquals(square,pacman.getSquare());
 		assertEquals(3,pacman.getNbLives());
 		
-		Square square2 = Square.of(mazemap, 1, 1);
+		Square square2 = Square.of(mazemap, -1, 0);
 		pacman.setSquare(square2);
 		
 		assertEquals(square2,pacman.getSquare());
